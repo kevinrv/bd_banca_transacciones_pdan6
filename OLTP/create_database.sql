@@ -21,3 +21,29 @@ genero VARCHAR(20) NOT NULL,
 estado_civil VARCHAR(20) NOT NULL
 );
 GO
+
+-- personas juridicas
+CREATE TABLE personas_juridicas(
+id INT IDENTITY(1,1) PRIMARY KEY,
+ruc CHAR(11) NOT NULL UNIQUE,
+razon_social VARCHAR(255) NOT NULL,
+direccion VARCHAR(200) NOT NULL,
+email VARCHAR(155) NOT NULL,
+telefono VARCHAR(20) NOT NULL,
+tipo_empresa VARCHAR(55) NOT NULL,
+rubro VARCHAR(55),
+fecha_creacion DATE NOT NULL
+);
+Go
+
+-- Clientes
+CREATE TABLE clientes(
+id INT IDENTITY(1,1) PRIMARY KEY,
+persona_id INT NOT NULL,
+tipo_cliente varchar(50) NOT NULL,
+FOREIGN KEY (persona_id) REFERENCES personas_naturales(id),
+FOREIGN KEY (persona_id) REFERENCES personas_juridicas(id)
+);
+
+--sucursales
+--Tipos de cuenta
