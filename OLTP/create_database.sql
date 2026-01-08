@@ -116,4 +116,45 @@ FOREIGN KEY(cuenta_origen_id) REFERENCES cuentas(id),
 FOREIGN KEY(cuenta_destino_id) REFERENCES cuentas(id),
 FOREIGN KEY(canal_id) REFERENCES canales(id),
 FOREIGN KEY(tipo_transaccion_id) REFERENCES tipos_transaccion(id)
-)
+);
+
+ALTER TABLE transacciones
+ADD estado_transaccion VARCHAR(55);
+
+--- Eliminar Constraint
+ALTER TABLE clientes
+DROP FK__clientes__person__3D5E1FD2;
+
+ALTER TABLE clientes
+DROP FK__clientes__person__3E52440B;
+
+--Editar tabla clientes
+--- Eliminar persona_id
+ALTER TABLE clientes
+DROP COLUMN persona_id;
+
+-- Elimir registros clientes
+DELETE FROM clientes;
+
+-- Add CHECK clientes
+ALTER TABLE clientes
+ALTER COLUMN tipo_cliente CHAR(1);
+
+ALTER TABLE clientes
+ADD CHECK (tipo_cliente IN ('N','J'));
+
+-- ALTER personas naturales
+ALTER TABLE personas_naturales
+ADD cliente_id INT UNIQUE;
+
+ALTER TABLE personas_naturales
+ADD CONSTRAINT fk_pn_clientes
+FOREIGN KEY (cliente_id) REFERENCES clientes(id);
+
+-- ALter personas Juridicas
+ALTER TABLE personas_juridicas
+ADD cliente_id INT UNIQUE;
+
+ALTER TABLE personas_juridicas
+ADD CONSTRAINT fk_pj_clientes
+FOREIGN KEY (cliente_id) REFERENCES clientes(id);
