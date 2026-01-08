@@ -229,3 +229,87 @@ VALUES
 SELECT * FROM tipos_cuenta;
 SELECT * FROM tipos_transaccion;
 SELECT * FROM sucursales;
+
+SELECT*FROM cuentas;
+
+DECLARE @Counter INT
+DECLARE @cliente_id INT
+SET @Counter = 0
+SET @cliente_id = 0
+
+
+WHILE @Counter < 10000
+BEGIN
+INSERT INTO cuentas (sucursal_id,cliente_id,tipo_cuenta_id,num_cuenta,cci,moneda,saldo,fecha_creacion,fecha_vencimiento)
+SELECT 
+  s.id AS 'sucursal_id',
+  c.id AS 'cliente_id',
+  t.id AS 'tipo_cuenta_id',
+  CONCAT('0001',CAST(ROUND(RAND() * 1000000,0) AS VARCHAR(50)),CAST(ROUND(RAND() * 1000000,0) AS VARCHAR(50))) AS numero_cuenta, -- Número de cuenta aleatorio
+  CONCAT('0001',CAST(ROUND(RAND() * 1000000,0) AS VARCHAR(50)),CAST(ROUND(RAND() * 1000000,0) AS VARCHAR(50)), '5') AS numero_cuenta, 
+  CASE
+	WHEN ROUND(RAND() * 10,0) > 5 THEN 'SOL'
+	WHEN ROUND(RAND() * 10,0) < 5 THEN 'DOLAR'
+  ELSE 'EURO' END AS 'moneda',-- Número de cuenta aleatorio
+  ROUND(RAND() * 1000000, 2) AS saldo, -- Saldo aleatorio
+  DATEADD(DAY, -ROUND(RAND() * 1095,0), GETDATE()) AS fecha_creacion,-- Fecha de creacion en los ultimos 1,095 días
+  DATEADD(DAY, ROUND(RAND() * 1460,0), GETDATE()) AS fecha_vencimiento-- Fecha de vencimiento en los proximos 1,460 días
+FROM clientes c
+CROSS JOIN tipos_cuenta t
+CROSS JOIN sucursales s
+ORDER BY NEWID()
+OFFSET 0 ROWS
+FETCH NEXT 1 ROWS ONLY;
+    SET @Counter = @Counter + 1
+END
+
+DELETE FROM cuentas;
+
+SELECT NEWID();
+SELECT ROUND(RAND() * 10,0)
+
+
+-- transacciones
+
+SELECT*FROM transacciones;
+
+DECLARE @Counter INT
+SET @Counter = 0
+
+
+WHILE @Counter < 100
+BEGIN
+INSERT INTO transacciones 
+(cuenta_origen_id,canal_id,tipo_transaccion_id,monto,tipo_moneda,fecha_inicio_transaccion,
+ estado_transaccion,created_at,create_by)
+SELECT 
+  co.id AS 'cuenta_origen_id',
+  --cd.id AS 'cuenta_destino_id',
+  cl.id AS 'canal_id',
+  tp.id AS 'tipo_transaccion_id',
+  ROUND(RAND() * 100000, 2) AS saldo, 
+    CASE
+	WHEN ROUND(RAND() * 10,0) > 5 THEN 'SOL'
+	WHEN ROUND(RAND() * 10,0) < 5 THEN 'DOLAR'
+  ELSE 'EURO' END AS 'tipo_moneda',
+  DATEADD(DAY, -ROUND(RAND() * 1095,0), GETDATE()) AS fecha_inicio_transaccion,
+  CASE
+	WHEN ROUND(RAND() * 10,0) < 2 THEN 'Pendiente'
+	WHEN ROUND(RAND() * 10,0) < 3 THEN 'Autorizada'
+	WHEN ROUND(RAND() * 10,0) < 5 THEN 'Pagada'
+	WHEN ROUND(RAND() * 10,0) < 6 THEN 'Reembolsada'
+	WHEN ROUND(RAND() * 10,0) < 8 THEN 'Fallida'
+  ELSE 'Cancelada' END AS 'estado_transaccion',-- Número de cuenta aleatorio
+  DATEADD(DAY, -ROUND(RAND() * 1095,0), GETDATE()) AS created_at,
+  ROUND(RAND() * 50,0) AS create_by
+FROM cuentas co
+CROSS JOIN cuentas cd
+CROSS JOIN canales cl
+CROSS JOIN tipos_transaccion tp
+ORDER BY NEWID()
+OFFSET 0 ROWS
+FETCH NEXT 1 ROWS ONLY;
+    SET @Counter = @Counter + 1
+END
+
+EXEC sp_help transacciones;
