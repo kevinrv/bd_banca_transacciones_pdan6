@@ -158,3 +158,22 @@ ADD cliente_id INT UNIQUE;
 ALTER TABLE personas_juridicas
 ADD CONSTRAINT fk_pj_clientes
 FOREIGN KEY (cliente_id) REFERENCES clientes(id);
+
+ALTER TABLE clientes
+ALTER COLUMN tipo_cliente CHAR(1) NOT NULL;
+
+SELECT*FROM transacciones;
+
+ALTER TABLE transacciones
+ADD created_at DATETIME NOT NULL;
+
+ALTER TABLE transacciones
+ADD updated_at DATETIME NULL;
+ALTER TABLE transacciones
+ADD deleted_at DATETIME NULL;
+ALTER TABLE transacciones
+ADD create_by DATETIME NOT NULL;
+ALTER TABLE transacciones
+ADD update_by DATETIME NULL;
+ALTER TABLE transacciones
+ADD delete_by DATETIME NULL;
