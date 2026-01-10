@@ -313,3 +313,52 @@ FETCH NEXT 1 ROWS ONLY;
 END
 
 EXEC sp_help transacciones;
+
+-- Versión Optimizada Para inserción de transacciones
+
+DECLARE @Counter INT = 0;
+
+WHILE @Counter < 20000
+BEGIN
+    INSERT INTO transacciones
+    (
+        cuenta_origen_id,
+		cuenta_destino_id,
+        canal_id,
+        tipo_transaccion_id,
+        monto,
+        tipo_moneda,
+        fecha_inicio_transaccion,
+		fecha_fin_transaccion,
+		tiempo_transaccion,
+        estado_transaccion,
+        created_at,
+        create_by
+    )
+    SELECT
+        (SELECT TOP 1 id FROM cuentas ORDER BY NEWID()),
+		(SELECT TOP 1 id FROM cuentas ORDER BY NEWID()),
+        (SELECT TOP 1 id FROM canales ORDER BY NEWID()),
+        (SELECT TOP 1 id FROM tipos_transaccion ORDER BY NEWID()),
+        ROUND(RAND(CHECKSUM(NEWID())) * 100000, 2),
+        CASE
+            WHEN RAND() < 0.33 THEN 'SOL'
+            WHEN RAND() < 0.66 THEN 'DOLAR'
+            ELSE 'EURO'
+        END,
+        DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 1095, GETDATE()),
+        DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 1095, GETDATE()),
+		ROUND(RAND()*100,0),
+        CASE
+            WHEN RAND() < 0.15 THEN 'Pendiente'
+            WHEN RAND() < 0.30 THEN 'Autorizada'
+            WHEN RAND() < 0.55 THEN 'Pagada'
+            WHEN RAND() < 0.70 THEN 'Reembolsada'
+            WHEN RAND() < 0.85 THEN 'Fallida'
+            ELSE 'Cancelada'
+        END,
+        GETDATE(),
+        ABS(CHECKSUM(NEWID())) % 50 + 1;
+
+    SET @Counter += 1;
+END;
