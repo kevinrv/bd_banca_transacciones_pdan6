@@ -1,0 +1,227 @@
+🟢 NIVEL 1 – BÁSICO (Fundamentos OLTP)
+
+📘 Objetivo: dominar SELECT, WHERE, JOIN simples, ORDER BY
+
+Caso 1
+
+Listar todos los clientes naturales mostrando:
+
+id_cliente
+
+nombres
+
+apellidos
+
+tipo_cliente
+
+Caso 2
+
+Mostrar todas las cuentas indicando:
+
+número de cuenta
+
+tipo de cuenta
+
+saldo actual
+
+nombre del cliente
+
+Caso 3
+
+Listar todas las transacciones realizadas por el canal Banca Móvil.
+
+Caso 4
+
+Obtener todas las transacciones cuyo monto sea mayor a 1000 soles.
+
+Caso 5
+
+Listar las sucursales ordenadas por fecha de creación (de la más antigua a la más reciente).
+
+Caso 6
+
+Mostrar los distintos tipos de transacción registrados en el sistema.
+
+Caso 7
+
+Listar las cuentas que pertenecen a clientes jurídicos.
+
+Caso 8
+
+Mostrar las transacciones realizadas en una fecha específica.
+
+Caso 9
+
+Listar las cuentas cuyo saldo sea menor a 500.
+
+Caso 10
+
+Mostrar las transacciones indicando:
+
+monto
+
+fecha
+
+tipo de transacción
+
+canal utilizado
+
+🟡 NIVEL 2 – INTERMEDIO (Análisis Operativo)
+
+📗 Objetivo: GROUP BY, HAVING, funciones agregadas, JOIN múltiples
+
+Caso 11
+
+Calcular el monto total transaccionado por cada tipo de transacción.
+
+Caso 12
+
+Obtener el número de transacciones por canal.
+
+Caso 13
+
+Listar los clientes que tienen más de una cuenta.
+
+Caso 14
+
+Mostrar el saldo promedio por tipo de cuenta.
+
+Caso 15
+
+Identificar las sucursales que registraron más de 20 transacciones.
+
+Caso 16
+
+Obtener el cliente que realizó el mayor monto acumulado en transacciones.
+
+Caso 17
+
+Mostrar el total de transacciones por día.
+
+Caso 18
+
+Listar las cuentas que nunca registraron transacciones.
+
+Caso 19
+
+Calcular el monto total transaccionado por tipo de cliente (N / J).
+
+Caso 20
+
+Mostrar los 3 canales más utilizados según número de transacciones.
+
+🟠 NIVEL 3 – AVANZADO (Control y Gestión Bancaria)
+
+📙 Objetivo: subconsultas, CTE, CASE, EXISTS, lógica de negocio
+
+Caso 21
+
+Identificar clientes que retiraron más dinero del que depositaron.
+
+Caso 22
+
+Mostrar cuentas cuyo saldo actual no coincide con el movimiento histórico de transacciones.
+
+Caso 23
+
+Clasificar las transacciones según monto:
+
+Bajo (< 500)
+
+Medio (500 – 2000)
+
+Alto (> 2000)
+
+Caso 24
+
+Listar los clientes que realizaron transacciones en más de un canal.
+
+Caso 25
+
+Obtener las cuentas con movimientos consecutivos en días seguidos.
+
+Caso 26
+
+Mostrar las transacciones realizadas fuera del horario laboral (ej. después de las 6pm).
+
+Caso 27
+
+Identificar clientes inactivos (sin transacciones en los últimos 6 meses).
+
+Caso 28
+
+Mostrar el ranking de clientes por volumen de dinero movido.
+
+Caso 29
+
+Detectar transacciones que superan el promedio general del sistema.
+
+Caso 30
+
+Obtener el canal dominante por sucursal.
+
+🔴 NIVEL 4 – EXPERTO (Escenarios Reales de Auditoría y Riesgo)
+
+📕 Objetivo: CTE recursivos, ventanas, control financiero, lógica compleja
+
+Caso 31
+
+Detectar posibles transacciones sospechosas:
+
+más de 3 transacciones en menos de 10 minutos
+
+mismo cliente
+
+mismo canal
+
+Caso 32
+
+Calcular el saldo acumulado de cada cuenta usando funciones ventana.
+
+Caso 33
+
+Simular un estado de cuenta bancario por cliente:
+
+saldo inicial
+
+movimientos
+
+saldo final por fecha
+
+Caso 34
+
+Detectar cuentas con retiros consecutivos decrecientes.
+
+Caso 35
+
+Identificar clientes que concentraron el 80% del volumen transaccional (Principio de Pareto).
+
+Caso 36
+
+Comparar el volumen transaccional mensual actual vs el mes anterior.
+
+Caso 37
+
+Detectar cuentas que realizan solo retiros y nunca depósitos.
+
+Caso 38
+
+Generar un ranking dinámico de sucursales por monto movido.
+
+Caso 39
+
+Identificar canales con crecimiento negativo respecto al mes anterior.
+
+Caso 40
+
+Construir una vista de control gerencial que muestre:
+
+total transacciones
+
+monto total
+
+ticket promedio
+
+canal más usado
+
+sucursal más activa
