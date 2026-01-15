@@ -1,4 +1,6 @@
-﻿/*
+﻿
+USE bd_banca_transacciones_pdan6;
+/*
 🟡 NIVEL 2 – INTERMEDIO (Análisis Operativo)
 
 📗 Objetivo: GROUP BY, HAVING, funciones agregadas, JOIN múltiples
