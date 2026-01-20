@@ -42,12 +42,16 @@ SELECT
 	SUM(monto) AS 'Monto',
 	COUNT(t.id) AS 'cantidad'
 FROM transacciones t
-INNER JOIN cuentas c ON t.cuenta_origen_id = c.id AND t.cuenta_destino_id IS NULL
-WHERE c.id IN ()
+INNER JOIN
+	cuentas c ON c.id = CASE 
+			WHEN t.cuenta_origen_id IS NOT NULL
+				THEN t.cuenta_origen_id
+			ELSE t.cuenta_destino_id
+			END
 GROUP BY
 	CAST(fecha_inicio_transaccion AS DATE),
 	t.tipo_transaccion_id,
 	c.sucursal_id,
-	t.canal_id;
+	t.canal_id
+ORDER BY 1;
 
-	SELECT*FROM transacciones;
