@@ -5,9 +5,9 @@ USE bd_pdan_transacciones_bi_6;
 CREATE TABLE dim_tiempo(
 id INT IDENTITY(1,1) PRIMARY KEY,
 fecha_transaccion DATE NOT NULL,
-anio DATE NOT NULL,
-mes DATE NOT NULL,
-dia DATE NOT NULL
+anio INT NOT NULL,
+mes INT NOT NULL,
+dia INT NOT NULL
 )
 
 -- DIM SUCURSAL
@@ -22,6 +22,7 @@ sector  VARCHAR(255));
 create table dim_canal
 (
 id int IDENTITY(1,1) primary key,
+canal_id INT,
 canal varchar (255)
 )
 
@@ -60,3 +61,4 @@ FOREIGN KEY (dim_sucursal_id) REFERENCES dim_sucursal(id);
 ALTER TABLE hechos_transacciones 
 ADD CONSTRAINT FK_hechos_canal 
 FOREIGN KEY (dim_canal_id) REFERENCES dim_canal(id);
+

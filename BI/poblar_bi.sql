@@ -55,3 +55,28 @@ GROUP BY
 	t.canal_id
 ORDER BY 1;
 
+-- Limpiar dimensiones
+
+DELETE FROM dim_tiempo
+ DBCC CHECKIDENT('dim_tiempo', RESEED, 0);
+DELETE FROM dim_sucursal
+ DBCC CHECKIDENT('dim_sucursal', RESEED, 0);
+DELETE FROM dim_tipo_transaccion
+ DBCC CHECKIDENT('dim_tipo_transaccion', RESEED, 0);
+DELETE FROM dim_canal
+ DBCC CHECKIDENT('dim_canal', RESEED, 0);
+DELETE FROM hechos_transacciones
+ DBCC CHECKIDENT('hechos_transacciones', RESEED, 0);
+
+
+ 
+DROP TABLE dim_tiempo
+
+DELETE FROM dim_sucursal
+
+DELETE FROM dim_tipo_transaccion
+
+DROP TABLE dim_canal
+
+DROP TABLE hechos_transacciones
+
