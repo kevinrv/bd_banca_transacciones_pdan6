@@ -13,3 +13,8 @@
 
 <img width="1657" height="901" alt="image" src="https://github.com/user-attachments/assets/66e08746-9506-4111-96d4-ab1ad3f783f2" />
 
+## Evidencias SSRS#
+
+<img width="1918" height="1003" alt="image" src="https://github.com/user-attachments/assets/26377853-9749-48aa-8753-3e7289ef9010" />
+
+<img width="1447" height="805" alt="image" src="https://github.com/user-attachments/assets/d4341c94-090a-4c83-83ce-8dd51d0833d6" />
